@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioMazic by MindMazic — Introduction Script</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bio: #00C896;
+    --bio-dark: #009970;
+    --bio-light: #E0FFF6;
+    --mind: #FF6B35;
+    --mind-dark: #CC4F1F;
+    --mind-light: #FFF0EB;
+    --joy: #FFD60A;
+    --joy-dark: #B89500;
+    --ink: #0D1117;
+    --ink2: #1E2733;
+    --muted: #6B7A8D;
+    --soft: #F0F4F8;
+    --white: #FFFFFF;
+    --card-r: 20px;
+    --section-r: 28px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,200,150,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 100% 80%, rgba(255,107,53,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 0% 100%, rgba(255,214,10,0.12) 0%, transparent 60%),
+      var(--ink);
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.4;
+    animation: float 8s ease-in-out infinite;
+  }
+  .orb1 { width: 300px; height: 300px; background: var(--bio); top: -80px; right: -60px; animation-delay: 0s; }
+  .orb2 { width: 200px; height: 200px; background: var(--mind); bottom: 60px; left: -40px; animation-delay: -3s; }
+  .orb3 { width: 150px; height: 150px; background: var(--joy); top: 40%; left: 20%; animation-delay: -5s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 860px; }
+
+  .brand-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    padding: 8px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--bio);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .brand-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--bio); animation: pulse 2s ease infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(52px, 9vw, 96px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .t-bio { color: var(--bio); }
+  .t-mind { color: var(--mind); }
+
+  .hero-sub {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(14px, 2.5vw, 20px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .t-joy { color: var(--joy); }
+
+  .motive-pill {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--joy) 0%, var(--mind) 100%);
+    color: var(--ink);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 28px;
+    border-radius: 100px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .hero-desc {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto 56px;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .hero-desc strong { color: var(--white); font-weight: 500; }
+
+  .stat-row {
+    display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.5s ease both;
+    margin-bottom: 60px;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px; font-weight: 800;
+    background: linear-gradient(135deg, var(--bio), var(--joy));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+
+  .scroll-hint {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: fadeUp 0.6s 0.7s ease both;
+    color: rgba(255,255,255,0.3);
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .scroll-arrow { width: 1px; height: 40px; background: linear-gradient(var(--bio), transparent); animation: drip 2s ease infinite; }
+  @keyframes drip { 0%,100%{transform:scaleY(1) translateY(0);opacity:1;} 50%{transform:scaleY(0.6) translateY(10px);opacity:0.5;} }
+
+  @keyframes fadeUp { from { opacity:0; transform: translateY(24px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ─── SECTION WRAPPER ─── */
+  .section { padding: 80px 24px; max-width: 960px; margin: 0 auto; }
+
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .section-tag::before { content:''; display:block; width:24px; height:1px; background: currentColor; }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+  }
+
+  /* ─── FRAMEWORK GRID ─── */
+  .framework-grid { display: grid; gap: 16px; }
+
+  .frame-card {
+    background: var(--ink2);
+    border-radius: var(--card-r);
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    cursor: default;
+  }
+  .frame-card:hover { transform: translateY(-3px); }
+
+  .frame-card.bio-theme:hover { border-color: rgba(0,200,150,0.4); }
+  .frame-card.mind-theme:hover { border-color: rgba(255,107,53,0.4); }
+  .frame-card.joy-theme:hover { border-color: rgba(255,214,10,0.4); }
+
+  .frame-time {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 28px 24px;
+    min-width: 110px;
+    position: relative;
+  }
+  .bio-theme .frame-time { background: rgba(0,200,150,0.12); }
+  .mind-theme .frame-time { background: rgba(255,107,53,0.12); }
+  .joy-theme .frame-time { background: rgba(255,214,10,0.12); }
+
+  .frame-mins {
+    font-family: 'Syne', sans-serif;
+    font-size: 38px; font-weight: 800; line-height: 1;
+  }
+  .bio-theme .frame-mins { color: var(--bio); }
+  .mind-theme .frame-mins { color: var(--mind); }
+  .joy-theme .frame-mins { color: var(--joy); }
+
+  .frame-unit { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+
+  .frame-body { padding: 24px 28px; }
+  .frame-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .bio-theme .frame-label { color: var(--bio); }
+  .mind-theme .frame-label { color: var(--mind); }
+  .joy-theme .frame-label { color: var(--joy); }
+
+  .frame-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+  .frame-desc { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.65; }
+  .frame-script {
+    margin-top: 14px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 12px;
+    border-left: 3px solid;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+  }
+  .bio-theme .frame-script { border-color: var(--bio); }
+  .mind-theme .frame-script { border-color: var(--mind); }
+  .joy-theme .frame-script { border-color: var(--joy); }
+
+  /* ─── SCRIPT SECTION ─── */
+  .script-container { display: flex; flex-direction: column; gap: 32px; }
+
+  .script-block {
+    background: var(--ink2);
+    border-radius: var(--section-r);
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+  }
+
+  .script-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .script-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px; letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .script-header-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; }
+  .script-tag {
+    margin-left: auto;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+  .tag-hook { background: rgba(255,214,10,0.15); color: var(--joy); }
+  .tag-energy { background: rgba(0,200,150,0.15); color: var(--bio); }
+  .tag-concept { background: rgba(255,107,53,0.15); color: var(--mind); }
+  .tag-mission { background: rgba(0,200,150,0.15); color: var(--bio); }
+  .tag-cta { background: rgba(255,107,53,0.15); color: var(--mind); }
+
+  .script-body { padding: 28px; }
+  .script-text {
+    font-size: 16px; line-height: 1.9; color: rgba(255,255,255,0.82);
+    font-weight: 300;
+  }
+  .script-text .highlight { color: var(--white); font-weight: 500; }
+  .script-text .bio-hl { color: var(--bio); font-weight: 500; }
+  .script-text .mind-hl { color: var(--mind); font-weight: 500; }
+  .script-text .joy-hl { color: var(--joy); font-weight: 700; }
+  .script-text .big {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(20px, 3.5vw, 30px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.2;
+    margin: 20px 0 16px;
+    letter-spacing: -0.01em;
+  }
+  .script-text .pause {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted);
+    background: rgba(255,255,255,0.05);
+    padding: 4px 10px; border-radius: 100px;
+    margin: 0 4px;
+    vertical-align: middle;
+  }
+  .script-text em { color: rgba(255,255,255,0.5); font-style: italic; }
+
+  .delivery-note {
+    margin-top: 20px;
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+  }
+  .delivery-note .dn-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ─── MODES SECTION ─── */
+  .modes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width:600px) { .modes-grid { grid-template-columns: 1fr; } }
+
+  .mode-card {
+    border-radius: var(--card-r);
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative; overflow: hidden;
+  }
+  .mode-card.online { background: linear-gradient(135deg, rgba(0,200,150,0.1), rgba(0,200,150,0.02)); }
+  .mode-card.offline { background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(255,107,53,0.02)); }
+
+  .mode-icon { font-size: 32px; margin-bottom: 16px; }
+  .mode-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+  .online .mode-title { color: var(--bio); }
+  .offline .mode-title { color: var(--mind); }
+  .mode-desc { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+  .mode-features { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .mode-feat {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: rgba(255,255,255,0.75);
+  }
+  .mode-feat::before { content:''; display:block; width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+  .online .mode-feat::before { background: var(--bio); }
+  .offline .mode-feat::before { background: var(--mind); }
+
+  /* ─── SUBJECTS ─── */
+  .subjects-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .subj {
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 15px;
+    border: 1.5px solid;
+    transition: all 0.25s ease;
+    cursor: default;
+  }
+  .subj.neet { border-color: var(--bio); color: var(--bio); }
+  .subj.olympiad { border-color: var(--joy); color: var(--joy); }
+  .subj.apbio { border-color: var(--mind); color: var(--mind); }
+  .subj:hover { background: rgba(255,255,255,0.05); transform: scale(1.03); }
+
+  /* ─── JOY SECTION ─── */
+  .joy-section {
+    background: linear-gradient(135deg, rgba(255,214,10,0.08), rgba(0,200,150,0.06));
+    border: 1px solid rgba(255,214,10,0.2);
+    border-radius: var(--section-r);
+    padding: 56px 40px;
+    text-align: center;
+    position: relative; overflow: hidden;
+    margin: 0 0 80px;
+  }
+  .joy-section::before {
+    content: 'JOYFUL LEARNING';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: 'Syne', sans-serif;
+    font-size: 120px;
+    font-weight: 800;
+    color: rgba(255,214,10,0.04);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -0.02em;
+  }
+  .joy-big {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 6vw, 60px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .joy-sub { font-size: 17px; color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    margin: 0 auto;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer { text-align: center; padding: 60px 24px 40px; }
+  .footer-brand { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+  .footer-tag { font-size: 13px; color: var(--muted); }
+
+  /* ─── PRINT BUTTON ─── */
+  .print-btn {
+    position: fixed; bottom: 28px; right: 28px;
+    background: var(--bio);
+    color: var(--ink);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 13px;
+    padding: 12px 24px; border-radius: 100px;
+    border: none; cursor: pointer;
+    box-shadow: 0 8px 32px rgba(0,200,150,0.35);
+    transition: all 0.25s ease;
+    z-index: 100;
+    letter-spacing: 0.05em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .print-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,200,150,0.5); }
+
+  @media print {
+    body { background: white; color: black; }
+    .print-btn, .orb { display: none; }
+    .hero-bg { display: none; }
+    .hero { min-height: auto; padding: 40px 24px; }
+    .script-text { color: #333; }
+    .frame-desc, .mode-desc { color: #555; }
+  }
+
+  @media (max-width: 640px) {
+    .frame-card { grid-template-columns: 1fr; }
+    .frame-time { padding: 20px; flex-direction: row; gap: 8px; min-width: auto; }
+    .stat-row { gap: 24px; }
+    .modes-grid { grid-template-columns: 1fr; }
+    .joy-section { padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="hero-content">
+    <div class="brand-badge"><span class="dot"></span> Official Introduction Script</div>
+    <h1 class="hero-title">
+      <span class="t-bio">Bio</span><span style="color:rgba(255,255,255,0.15)">mazic</span><br>
+      <span style="font-size:0.55em; color:rgba(255,255,255,0.3); letter-spacing:0.02em;">by </span><span class="t-mind" style="font-size:0.75em;">Mind</span><span style="color:rgba(255,255,255,0.2); font-size:0.75em;">mazic</span>
+    </h1>
+    <p class="hero-sub">NEET · Olympiad · AP Biology &nbsp;|&nbsp; <span class="t-joy">Online + Offline</span></p>
+    <div class="motive-pill">✦ Our Motive: Joyful Learning ✦</div>
+    <p class="hero-desc">
+      Where biology stops being a subject you <strong>study</strong><br>
+      and becomes something you <strong>feel, love, and live.</strong>
+    </p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">1'</div><div class="stat-label">Curiosity Hook</div></div>
+      <div class="stat"><div class="stat-num">5'</div><div class="stat-label">Concept Build</div></div>
+      <div class="stat"><div class="stat-num">10'</div><div class="stat-label">Full Topic</div></div>
+      <div class="stat"><div class="stat-num">15'</div><div class="stat-label">Revision + Strategy</div></div>
+    </div>
+    <div class="scroll-hint"><span>Scroll to read the script</span><div class="scroll-arrow"></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════ FRAMEWORK ══════════ -->
+<div class="section">
+  <div class="section-tag">The BioMazic Method</div>
+  <h2 class="section-title">4-Layer Learning Framework</h2>
+  <div class="framework-grid">
+
+    <div class="frame-card bio-theme">
+      <div class="frame-time">
+        <div class="frame-mins">1</div>
+        <div class="frame-unit">min</div>
+      </div>
+      <div class="frame-body">
+        <div class="frame-label">Layer 01 — Ignition</div>
+        <div class="frame-title">Curiosity Hook</div>
+        <div class="frame-desc">One mind-bending question or fact that makes the student lean forward and say — <em>"Wait… what?"</em> This is the open loop their brain must close.</div>
+        <div class="frame-script">"Your heart beats 100,000 times today — and it never once asked for your permission. Why? Let's find out."</div>
+      </div>
+    </div>
+
+    <div class="frame-card mind-theme">
+      <div class="frame-time">
+        <div class="frame-mins">5</div>
+        <div class="frame-unit">min</div>
+      </div>
+      <div class="frame-body">
+        <div class="frame-label">Layer 02 — Foundation</div>
+        <div class="frame-title">Concept Building</div>
+        <div class="frame-desc">Crystal-clear core concept. Simplified analogies. Visual scaffolding. The student gets the "aha" — not confusion, not fear — pure <em>clarity.</em></div>
+        <div class="frame-script">"Think of a neuron like a WhatsApp message. One end receives it, the other end forwards it — instantly, all-or-nothing."</div>
+      </div>
+    </div>
+
+    <div class="frame-card bio-theme">
+      <div class="frame-time">
+        <div class="frame-mins">10</div>
+        <div class="frame-unit">min</div>
+      </div>
+      <div class="frame-body">
+        <div class="frame-label">Layer 03 — Mastery</div>
+        <div class="frame-title">Complete Topic Deep-Dive</div>
+        <div class="frame-desc">The full picture — mechanisms, exceptions, exam traps, diagram walkthroughs. NEET-level precision meets Olympiad-level depth. Nothing left behind.</div>
+        <div class="frame-script">"The Bohr effect, 2,3-BPG, the Haldane effect — three pages in your textbook, decoded in under 10 minutes."</div>
+      </div>
+    </div>
+
+    <div class="frame-card joy-theme">
+      <div class="frame-time">
+        <div class="frame-mins">15</div>
+        <div class="frame-unit">min</div>
+      </div>
+      <div class="frame-body">
+        <div class="frame-label">Layer 04 — Strategy</div>
+        <div class="frame-title">Revision + Exam Strategy</div>
+        <div class="frame-desc">High-yield MCQs, memory maps, common traps, last-minute revision frameworks. Leave every session knowing <em>exactly</em> what will be asked — and how to answer it.</div>
+        <div class="frame-script">"Five MCQs right now. No peeking. Then we decode each one together — why A is wrong, why C is deadly correct."</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════ MAIN SCRIPT ══════════ -->
+<div class="section">
+  <div class="section-tag">The Introduction Script</div>
+  <h2 class="section-title">Read It. <span class="t-bio">Feel It.</span> <span class="t-mind">Deliver It.</span></h2>
+  <div class="script-container">
+
+    <!-- BLOCK 1 -->
+    <div class="script-block">
+      <div class="script-header">
+        <span class="script-num">01</span>
+        <span class="script-header-title">The Opening Punch</span>
+        <span class="script-tag tag-hook">Hook</span>
+      </div>
+      <div class="script-body">
+        <div class="script-text">
+          <span class="big">"Right now — your body is doing something extraordinary."</span>
+          Your heart is beating. Your neurons are firing. Your cells are dividing. Your DNA — all <span class="highlight">2 metres of it</span> — is coiled inside a nucleus the size of a grain of sand.
+          <span class="pause">⏸ pause 2 sec</span>
+          <br><br>
+          And you didn't ask it to do any of that.
+          <br><br>
+          <span class="bio-hl">Biology isn't just a subject.</span> It's the story of <span class="highlight">you.</span>
+        </div>
+        <div class="delivery-note"><span class="dn-icon">🎤</span><span><strong>Delivery:</strong> Start quiet. Let the first line land. Pause deliberately. Build slowly — the contrast between "you didn't ask" and what follows should feel like a reveal.</span></div>
+      </div>
+    </div>
+
+    <!-- BLOCK 2 -->
+    <div class="script-block">
+      <div class="script-header">
+        <span class="script-num">02</span>
+        <span class="script-header-title">The Problem — Why Students Struggle</span>
+        <span class="script-tag tag-energy">Energy</span>
+      </div>
+      <div class="script-body">
+        <div class="script-text">
+          But here's the truth most students are living with every day —
+          <span class="big">"I've read this chapter 3 times. I still don't get it."</span>
+          Pages of facts that blur together. Diagrams that make no sense. MCQs that feel like traps. And the exam? <span class="mind-hl">Just 3 months away.</span>
+          <br><br>
+          If that's you — <span class="joy-hl">you're in the right place.</span>
+          <br><br>
+          Because the problem was never <em>you.</em> The problem was the way biology was being taught.
+          <br><br>
+          Reading facts. Rereading facts. Hoping something sticks.
+          <br><br>
+          <span class="highlight">That's not learning. That's suffering.</span>
+          <br><br>
+          And we refuse to teach that way.
+        </div>
+        <div class="delivery-note"><span class="dn-icon">🎤</span><span><strong>Delivery:</strong> Be conversational and warm — not scolding. Students should feel <em>understood</em>, not judged. "That's not learning. That's suffering." — say it firmly but kindly. Let it breathe.</span></div>
+      </div>
+    </div>
+
+    <!-- BLOCK 3 -->
+    <div class="script-block">
+      <div class="script-header">
+        <span class="script-num">03</span>
+        <span class="script-header-title">Introducing BioMazic by MindMazic</span>
+        <span class="script-tag tag-concept">Concept</span>
+      </div>
+      <div class="script-body">
+        <div class="script-text">
+          Welcome to <span class="bio-hl">BioMazic</span> — by <span class="mind-hl">MindMazic.</span>
+          <br><br>
+          We are not just another coaching platform. We are a movement.
+          <span class="big">"We believe that every student deserves to love what they're learning."</span>
+          Our motive is simple, and we mean every word of it: <span class="joy-hl">✦ Joyful Learning. ✦</span>
+          <br><br>
+          Not the joy of getting easy questions right. The <span class="highlight">deeper joy</span> — of understanding something complex, of connecting dots across chapters, of reading an MCQ and knowing, instantly, precisely, <em>why</em> the answer is what it is.
+          <br><br>
+          That joy? It's not a bonus. <span class="bio-hl">It's our entire system.</span>
+          <br><br>
+          BioMazic is designed for students preparing for <span class="highlight">NEET, Biology Olympiad,</span> and <span class="highlight">AP Biology</span> — whether you're sitting in a classroom with us, or learning from your room at midnight.
+          <br><br>
+          <span class="joy-hl">Online. Offline. Always BioMazic.</span>
+        </div>
+        <div class="delivery-note"><span class="dn-icon">🎤</span><span><strong>Delivery:</strong> When you say "Joyful Learning" — smile. Genuinely. Students can hear a smile. Say "Online. Offline. Always BioMazic." like it's a promise, not a tagline.</span></div>
+      </div>
+    </div>
+
+    <!-- BLOCK 4 -->
+    <div class="script-block">
+      <div class="script-header">
+        <span class="script-num">04</span>
+        <span class="script-header-title">The BioMazic Method — How We Teach</span>
+        <span class="script-tag tag-mission">Method</span>
+      </div>
+      <div class="script-body">
+        <div class="script-text">
+          Here's what makes us different. Every single topic — every one — follows our <span class="bio-hl">4-Layer Method.</span>
+          <span class="big">1 minute that makes you curious. 5 minutes that make it clear. 10 minutes that make you unstoppable. 15 minutes that make you exam-ready.</span>
+          We start with <span class="highlight">one hook</span> — one question, one fact, one image so strange that your brain refuses to let go of it. That curiosity? That's the door.
+          <br><br>
+          Then we walk through the concept — <span class="joy-hl">simplified without being dumbed down.</span> We use analogies from everyday life. We use stories. We use the kind of explanations that make you say "why didn't anyone just say it like that?"
+          <br><br>
+          Then we go deep — <span class="highlight">NEET-level precision, Olympiad-level insight.</span> Mechanisms. Exceptions. Diagrams. The questions that destroy unprepared students — and the ones that make prepared students <em>smile.</em>
+          <br><br>
+          And we close with strategy. MCQs. Rapid revision. Memory frameworks. Because knowing the content isn't enough — you need to <span class="bio-hl">perform under pressure.</span>
+          <br><br>
+          This is not passive learning. <span class="mind-hl">This is active, alive, energised biology.</span>
+        </div>
+        <div class="delivery-note"><span class="dn-icon">🎤</span><span><strong>Delivery:</strong> The "1 min… 5 min… 10 min… 15 min" line — say each number with increasing energy and weight. Build to "exam-ready" like it's a crescendo. Pause after "why didn't anyone just say it like that?" — let students nod.</span></div>
+      </div>
+    </div>
+
+    <!-- BLOCK 5 -->
+    <div class="script-block">
+      <div class="script-header">
+        <span class="script-num">05</span>
+        <span class="script-header-title">The Joyful Learning Manifesto</span>
+        <span class="script-tag tag-mission">Mission</span>
+      </div>
+      <div class="script-body">
+        <div class="script-text">
+          Let me tell you what <span class="joy-hl">Joyful Learning</span> actually means to us.
+          <br><br>
+          It means the moment you understand mitosis — you don't just memorise the phases. You <span class="highlight">see</span> it. You feel the cell pulling apart. You understand <em>why</em> cancer happens when that process breaks.
+          <br><br>
+          It means when you read the word <span class="bio-hl">"photosynthesis"</span> — you don't see a definition. You see a leaf converting sunlight into sugar, you feel the elegance of it, you think — <em>"that's kind of beautiful."</em>
+          <br><br>
+          It means you walk into your exam <span class="highlight">not anxious, but excited.</span>
+          <span class="big">"Because when you truly understand biology — fear doesn't stand a chance."</span>
+          Joy isn't the goal after learning. <span class="mind-hl">Joy is the engine of learning.</span>
+          <br><br>
+          And that's what we build here, every single day — online and offline, for every student, at every level.
+        </div>
+        <div class="delivery-note"><span class="dn-icon">🎤</span><span><strong>Delivery:</strong> This is the heart of the script — slow down here. "That's kind of beautiful" — say it with genuine wonder. "Joy is the engine of learning" — let it land like a thesis statement. This is the moment students feel belonging.</span></div>
+      </div>
+    </div>
+
+    <!-- BLOCK 6 -->
+    <div class="script-block">
+      <div class="script-header">
+        <span class="script-num">06</span>
+        <span class="script-header-title">The Call to Begin</span>
+        <span class="script-tag tag-cta">Call to Action</span>
+      </div>
+      <div class="script-body">
+        <div class="script-text">
+          So here's where we are.
+          <br><br>
+          You have a goal — <span class="highlight">NEET. Olympiad. AP Bio.</span> A rank. A college. A dream.
+          <br><br>
+          We have a method — simplified, deep, joyful, and battle-tested.
+          <span class="big">"Let's build something together that neither of us can build alone."</span>
+          You bring the hunger. We bring the clarity. And between us — <span class="bio-hl">biology becomes the subject you never stop thinking about.</span>
+          <br><br>
+          This is <span class="bio-hl">BioMazic</span> by <span class="mind-hl">MindMazic.</span>
+          <br><br>
+          <span class="joy-hl">✦ Welcome to Joyful Learning. ✦</span>
+          <br><br>
+          <em>Now — let's begin.</em>
+        </div>
+        <div class="delivery-note"><span class="dn-icon">🎤</span><span><strong>Delivery:</strong> "Let's build something together" — point to the student (literally, if in-person). "Now — let's begin." — say it quietly, with absolute confidence. A teacher who knows what comes next doesn't need to shout.</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════ JOYFUL LEARNING ══════════ -->
+<div class="section" style="padding-bottom:0">
+  <div class="joy-section">
+    <div class="joy-big">
+      <span class="t-joy">Joyful</span> <span class="t-bio">Learning</span><br>
+      <span style="color:rgba(255,255,255,0.4); font-size:0.6em; font-weight:500;">isn't a feeling. It's a system.</span>
+    </div>
+    <p class="joy-sub">We design every minute of every lecture to make biology feel <strong style="color:white">inevitable, not impossible.</strong> When students enjoy what they study, they study more, retain more, and perform more.</p>
+  </div>
+</div>
+
+<!-- ══════════ MODES ══════════ -->
+<div class="section">
+  <div class="section-tag">Where We Teach</div>
+  <h2 class="section-title">Online + Offline. <span class="t-bio">Always BioMazic.</span></h2>
+  <div class="modes-grid">
+    <div class="mode-card online">
+      <div class="mode-icon">🌐</div>
+      <div class="mode-title">Online Mode</div>
+      <div class="mode-desc">Structured, screen-optimised lectures. Learn anywhere, pause and rewatch, and stay synced with the live cohort.</div>
+      <div class="mode-features">
+        <div class="mode-feat">Live interactive sessions</div>
+        <div class="mode-feat">Recorded lecture library</div>
+        <div class="mode-feat">Digital revision notes & MCQs</div>
+        <div class="mode-feat">Doubt clearing via chat & video</div>
+        <div class="mode-feat">Progress tracking dashboard</div>
+      </div>
+    </div>
+    <div class="mode-card offline">
+      <div class="mode-icon">🏫</div>
+      <div class="mode-title">Offline Mode</div>
+      <div class="mode-desc">Classroom energy, personal attention, and the irreplaceable power of learning together in the same room.</div>
+      <div class="mode-features">
+        <div class="mode-feat">In-person simplified lectures</div>
+        <div class="mode-feat">Printed strategy workbooks</div>
+        <div class="mode-feat">Peer-learning group sessions</div>
+        <div class="mode-feat">Face-to-face doubt resolution</div>
+        <div class="mode-feat">Mock test series with analysis</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 48px;">
+    <div class="section-tag">Who We Prepare For</div>
+    <div class="subjects-row" style="margin-top:20px;">
+      <div class="subj neet">NEET UG</div>
+      <div class="subj olympiad">Biology Olympiad</div>
+      <div class="subj apbio">AP Biology</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<div class="footer">
+  <div class="footer-brand"><span class="t-bio">Bio</span><span style="opacity:0.3">mazic</span> <span style="opacity:0.3; font-size:0.5em">by</span> <span class="t-mind">Mind</span><span style="opacity:0.3">mazic</span></div>
+  <div class="footer-tag" style="margin-top:8px; color: var(--joy); font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.15em;">✦ JOYFUL LEARNING ✦</div>
+  <div class="footer-tag" style="margin-top:16px;">Introduction Script · NEET · Olympiad · AP Biology · Online & Offline</div>
+</div>
+
+<button class="print-btn" onclick="window.print()">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6z"/></svg>
+  Print Script
+</button>
+
+<script>
+document.querySelectorAll('.frame-card, .script-block, .mode-card').forEach(el => {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
